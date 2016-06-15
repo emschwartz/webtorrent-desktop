@@ -64,12 +64,17 @@ function TorrentList (state) {
     var prog = torrentSummary.progress
     if (torrentSummary.status !== 'paused' && prog) {
       elements.push(hx`
-        <div class='ellipsis'>
-          ${renderPercentProgress()}
-          ${renderTotalProgress()}
-          ${renderPeers()}
-          ${renderDownloadSpeed()}
-          ${renderUploadSpeed()}
+        <div>
+          <div class='ellipsis'>
+            ${renderPercentProgress()}
+            ${renderTotalProgress()}
+            ${renderPeers()}
+            ${renderDownloadSpeed()}
+            ${renderUploadSpeed()}
+          </div>
+          <div class='ellipsis'>
+            ${renderTotalCost()}
+          </div>
         </div>
       `)
     }
@@ -105,6 +110,11 @@ function TorrentList (state) {
     function renderUploadSpeed () {
       if (prog.uploadSpeed === 0) return
       return hx`<span>↑ ${prettyBytes(prog.uploadSpeed)}/s</span>`
+    }
+
+    function renderTotalCost () {
+      if (prog.totalCost === 0) return
+      return hx`<span>Total cost: ${prog.totalCost}</span>`
     }
   }
 

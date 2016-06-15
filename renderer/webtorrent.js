@@ -256,7 +256,8 @@ function getTorrentProgress () {
       numPeers: torrent.numPeers,
       length: torrent.length,
       bitfield: torrent.bitfield,
-      files: fileProg
+      files: fileProg,
+      totalCost: torrent.totalCost
     }
   })
 
